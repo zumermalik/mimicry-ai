@@ -1,0 +1,5 @@
+mimicry-ai/
+├── mimicry_core.py       # The Main Application (The code I gave you)
+├── requirements.txt      # Dependency list
+├── .gitignore            # Keeps your repo clean
+└── README.md             # The Pitch Deck (Crucial for FounderForge)
