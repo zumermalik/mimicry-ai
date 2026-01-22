@@ -97,8 +97,3 @@ This ensures the software can drive **real physical motors** (servos/steppers) s
 * **Phase 3:** Physical Twin. Controlling a 3D-printed robotic arm in real-time.
 
 ---
-
-
-```
-
-```
