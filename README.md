@@ -77,18 +77,17 @@ python mimicry_core.py
 ---
 
 ## 🧠 The Math: Inverse Kinematics
-
 Unlike basic motion tracking, Mimicry.ai implements physics-based kinematics. We calculate the joint angles using the **Law of Cosines** to solve the geometric triangle formed by the arm links.
 
-Given a target :
+Given a target $(x, y)$:
 
-1. **Elbow Angle ():**
-$$ \cos(\theta_2) = \frac{x^2 + y^2 - L_1^2 - L_2^2}{2 L_1 L_2} $$
-2. **Shoulder Angle ():**
-Derived from the arctangent of the target vector minus the offset created by the second link.
+1. **Elbow Angle ($\theta_2$):**
+   $\theta_2 = \arccos\left(\frac{x^2 + y^2 - L_1^2 - L_2^2}{2 L_1 L_2}\right)$
+
+2. **Shoulder Angle ($\theta_1$):**
+   Derived from the arctangent of the target vector minus the offset created by the second link.
 
 This ensures the software can drive **real physical motors** (servos/steppers) simply by sending these calculated angles to a microcontroller (ESP32/Arduino).
-
 ---
 
 ## 🔮 Roadmap
