@@ -1,4 +1,3 @@
-```markdown
 # Mimicry.ai // Zero-Hardware Teleoperation
 > **FounderForge Submission** | **Category:** Robotics & AI Integration  
 > **Status:** MVP / Prototype
