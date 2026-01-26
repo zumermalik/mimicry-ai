@@ -27,13 +27,13 @@ We simulate a **2-Link Planar Robotic Arm** entirely in software to prove the co
 ## 📐 System Architecture
 
 ```mermaid
-graph TD
+flowchart TD
     A[User Hand] -->|Webcam Feed| B(Computer Vision Layer)
     B -->|MediaPipe Landmarks| C{Inverse Kinematics Engine}
     C -->|Calculate Limits| D[Safety Logic]
     C -->|Solve Angles| E[Joint Calculator]
     
-    subgraph "Mimicry Core (Local)"
+    subgraph Core["Mimicry Core (Local)"]
     B
     C
     D
@@ -41,12 +41,11 @@ graph TD
     end
     
     E -->|Theta 1, Theta 2| F((Simulated Arm))
-    E -.->|Serial/WiFi (Future)| G[ESP32 Controller]
+    E -.->|Serial or WiFi - Future| G[ESP32 Controller]
     G -.->|PWM Signal| H[Physical Servo Motors]
     
     style C fill:#f9f,stroke:#333,stroke-width:2px
     style G fill:#eee,stroke:#333,stroke-dasharray: 5 5
-
 ```
 
 ---
