@@ -1,3 +1,4 @@
+
 # Mimicry.ai // Zero-Hardware Teleoperation
 > **FounderForge Submission** | **Category:** Robotics & AI Integration  
 > **Status:** MVP / Prototype
@@ -23,11 +24,39 @@ We simulate a **2-Link Planar Robotic Arm** entirely in software to prove the co
 
 ---
 
+## 📐 System Architecture
+
+```mermaid
+graph TD
+    A[User Hand] -->|Webcam Feed| B(Computer Vision Layer)
+    B -->|MediaPipe Landmarks| C{Inverse Kinematics Engine}
+    C -->|Calculate Limits| D[Safety Logic]
+    C -->|Solve Angles| E[Joint Calculator]
+    
+    subgraph "Mimicry Core (Local)"
+    B
+    C
+    D
+    E
+    end
+    
+    E -->|Theta 1, Theta 2| F((Simulated Arm))
+    E -.->|Serial/WiFi (Future)| G[ESP32 Controller]
+    G -.->|PWM Signal| H[Physical Servo Motors]
+    
+    style C fill:#f9f,stroke:#333,stroke-width:2px
+    style G fill:#eee,stroke:#333,stroke-dasharray: 5 5
+
+```
+
+---
+
 ## ⚡ Installation & Setup
 
 ### 1. Clone the Repository
+
 ```bash
-git clone [https://github.com/YOUR_USERNAME/mimicry-ai.git](https://github.com/YOUR_USERNAME/mimicry-ai.git)
+git clone [https://github.com/zumermalik/mimicry-ai.git](https://github.com/zumermalik/mimicry-ai.git)
 cd mimicry-ai
 
 ```
@@ -77,17 +106,18 @@ python mimicry_core.py
 ---
 
 ## 🧠 The Math: Inverse Kinematics
+
 Unlike basic motion tracking, Mimicry.ai implements physics-based kinematics. We calculate the joint angles using the **Law of Cosines** to solve the geometric triangle formed by the arm links.
 
-Given a target $(x, y)$:
+Given a target :
 
-1. **Elbow Angle ($\theta_2$):**
-   $\theta_2 = \arccos\left(\frac{x^2 + y^2 - L_1^2 - L_2^2}{2 L_1 L_2}\right)$
+1. **Elbow Angle ():**
 
-2. **Shoulder Angle ($\theta_1$):**
-   Derived from the arctangent of the target vector minus the offset created by the second link.
+2. **Shoulder Angle ():**
+Derived from the arctangent of the target vector minus the offset created by the second link.
 
 This ensures the software can drive **real physical motors** (servos/steppers) simply by sending these calculated angles to a microcontroller (ESP32/Arduino).
+
 ---
 
 ## 🔮 Roadmap
